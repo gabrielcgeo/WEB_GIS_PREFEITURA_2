@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+    #map { height: calc(100vh - 56px); width: 100vw; margin-left: -12px;}
+    .info-panel { position: absolute; top: 10px; right: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2); max-height: calc(100vh - 80px); overflow-y: auto; max-width: 300px; }
+    .leaflet-custom-toolbar { position: absolute; top: 10px; left: 10px; z-index: 1000; background: white; border-radius: 4px; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+</style>
+{% endblock %}
+{% block content %}
+<div id="map"></div>
+{% endblock %}
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const companySlug = {{ company.slug|tojson }};
+        const map = L.map('map').setView([-19.91, -43.93], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        console.log(`Mapa iniciado para a empresa: ${companySlug}`);
+        // Lógica completa do mapa (fetch, toggle, share, etc.) seria adicionada aqui
+        // usando o companySlug para construir as URLs das APIs.
+        // Ex: fetch(`/portal/${companySlug}/api/camadas`)
+    });
+</script>
+{% endblock %}
