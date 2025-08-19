@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Painel de Admin{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Painel de Administrador</h1>
+    <p>Bem-vindo, {{ current_user.email }}!</p>
+    <div class="list-group">
+      <a href="{{ url_for('upload_layer_page') }}" class="list-group-item list-group-item-action">Fazer Upload de Camada</a>
+      <a href="#" class="list-group-item list-group-item-action disabled">Gerenciar Minhas Camadas (em breve)</a>
+      <a href="#" class="list-group-item list-group-item-action disabled">Gerenciar Páginas do Menu (em breve)</a>
+      
+      {% if current_user.role == 'super_admin' %}
+      <hr>
+      <h5 class="mt-3">Área do Super Admin</h5>
+      <a href="{{ url_for('admin_companies') }}" class="list-group-item list-group-item-action">Gerenciar Empresas</a>
+      <a href="{{ url_for('admin_users') }}" class="list-group-item list-group-item-action">Gerenciar Administradores</a>
+      <a href="#" class="list-group-item list-group-item-action disabled">Editar Meu Perfil (em breve)</a>
+      {% endif %}
+    </div>
+</div>
+{% endblock %}

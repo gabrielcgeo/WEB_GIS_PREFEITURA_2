@@ -1,0 +1,11 @@
+Flask
+geopandas
+fiona
+shapely
+pyproj
+rtree
+gunicorn
+Flask-Login
+Flask-SQLAlchemy
+werkzeug
+python-dateutil

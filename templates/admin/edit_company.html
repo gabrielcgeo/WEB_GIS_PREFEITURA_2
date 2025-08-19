@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar' if company else 'Criar' }} Empresa{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ 'Editar' if company else 'Criar' }} Empresa</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome da Empresa</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ company.name if company else '' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="slug" class="form-label">Slug (usado na URL, ex: prefeitura-sp)</label>
+            <input type="text" class="form-control" id="slug" name="slug" value="{{ company.slug if company else '' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="primary_color" class="form-label">Cor Principal</label>
+            <input type="color" class="form-control form-control-color" id="primary_color" name="primary_color" value="{{ company.primary_color if company else '#00d28f' }}" title="Escolha uma cor">
+        </div>
+         <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="layer_limit" class="form-label">Limite de Camadas</label>
+                <input type="number" class="form-control" id="layer_limit" name="layer_limit" value="{{ company.layer_limit if company else 5 }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="storage_limit_mb" class="form-label">Limite de Armazenamento (MB)</label>
+                <input type="number" class="form-control" id="storage_limit_mb" name="storage_limit_mb" value="{{ company.storage_limit_mb if company else 100 }}" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="expiry_date" class="form-label">Data de Expiração da Assinatura</label>
+            <input type="date" class="form-control" id="expiry_date" name="expiry_date" value="{{ company.expiry_date.strftime('%Y-%m-%d') if company and company.expiry_date else '' }}">
+            <small class="form-text text-muted">Deixe em branco para não definir uma data de expiração.</small>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a href="{{ url_for('admin_companies') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Criar Administrador{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Criar Novo Administrador Secundário</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+            <label for="company_id" class="form-label">Associar à Empresa</label>
+            <select class="form-select" id="company_id" name="company_id" required>
+                <option selected disabled value="">Escolha...</option>
+                {% for company in companies %}
+                <option value="{{ company.id }}">{{ company.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Criar Usuário</button>
+        <a href="{{ url_for('admin_users') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

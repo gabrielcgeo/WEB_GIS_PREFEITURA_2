@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Upload de Camada{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Upload de Nova Camada</h1>
+    <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+        <div class="alert alert-info">
+            Para Shapefiles, envie um arquivo <b>.ZIP</b> completo. Para outros formatos (GeoJSON, KML), envie o arquivo individual.
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Arquivo Geoespacial (.zip, .geojson, .kml)</label>
+            <input type="file" name="file" class="form-control" accept=".zip,.kml,.geojson,.gpkg" required>
+        </div>
+        <hr>
+        <h5>Metadados da Camada</h5>
+        <div class="mb-3">
+            <label for="layer_name" class="form-label">Nome de Exibição da Camada</label>
+            <input type="text" name="layer_name" class="form-control" placeholder="Deixe em branco para usar o nome do arquivo">
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="thematic_group" class="form-label">Grupo Temático</label>
+                <input type="text" name="thematic_group" class="form-control" value="Geral">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="responsible_sector" class="form-label">Setor Responsável</label>
+                <input type="text" name="responsible_sector" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="author" class="form-label">Autor da Base</label>
+                <input type="text" name="author" class="form-control">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="contact" class="form-label">Contato</label>
+                <input type="text" name="contact" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Camada</button>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

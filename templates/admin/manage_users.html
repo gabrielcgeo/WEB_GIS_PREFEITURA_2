@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Gerenciar Administradores{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Gerenciar Administradores Secundários</h1>
+        <a href="{{ url_for('create_user') }}" class="btn btn-success">Novo Admin</a>
+    </div>
+     <div class="table-responsive mt-3">
+        <table class="table table-striped">
+            <thead><tr><th>ID</th><th>Email</th><th>Empresa</th><th>Ações</th></tr></thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.company.name if user.company else 'N/A' }}</td>
+                    <td><a href="#" class="btn btn-sm btn-danger disabled">Excluir</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
